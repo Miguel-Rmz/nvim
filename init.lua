@@ -10,20 +10,22 @@ vim.opt.mouse = "a"
 vim.opt.cursorline = true
 vim.opt.scrolloff = 8
 vim.g.mapleader = " "
-vim.o.completeopt = 'menu,menuone'
+vim.o.completeopt = "menu,menuone"
 vim.opt.conceallevel = 1
 vim.opt.fileformat = "unix"
+vim.opt.list = true
+vim.opt.listchars = { tab = "⇥ ", trail = "·", eol = "↲" }
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
-    vim.fn.system({
-        "git",
-        "clone",
-        "--filter=blob:none",
-        "https://github.com/folke/lazy.nvim.git",
-        "--branch=stable", -- latest stable release
-        lazypath,
-    })
+	vim.fn.system({
+		"git",
+		"clone",
+		"--filter=blob:none",
+		"https://github.com/folke/lazy.nvim.git",
+		"--branch=stable", -- latest stable release
+		lazypath,
+	})
 end
 vim.opt.rtp:prepend(lazypath)
 
