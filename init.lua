@@ -11,6 +11,8 @@ vim.opt.cursorline = true
 vim.opt.scrolloff = 8
 vim.g.mapleader = " "
 vim.o.completeopt = 'menu,menuone'
+vim.opt.conceallevel = 1
+vim.opt.fileformat = "unix"
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
