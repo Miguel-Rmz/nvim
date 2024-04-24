@@ -14,7 +14,7 @@ vim.o.completeopt = "menu,menuone"
 vim.opt.conceallevel = 1
 vim.opt.fileformat = "unix"
 vim.opt.list = true
-vim.opt.listchars = { tab = "⇥ ", trail = "·", eol = "↲" }
+vim.opt.listchars = { tab = "⇥ ", trail = "·" } -- eol = "↲"
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
