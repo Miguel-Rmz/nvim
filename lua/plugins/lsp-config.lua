@@ -1,4 +1,3 @@
-return {
     {
         "williamboman/mason.nvim",
         config = function()
@@ -9,7 +8,7 @@ return {
         "williamboman/mason-lspconfig.nvim",
         config = function()
             require("mason-lspconfig").setup({
-                ensure_installed = { "lua_ls", "pyright", "volar", "cssls", "html", "tsserver" },
+                ensure_installed = { "lua_ls", "pyright", "volar", "cssls", "html", "ts_ls" },
             })
         end,
     },
@@ -26,7 +25,7 @@ return {
             })
             lspconfig.cssls.setup({ capabilities = capabilities })
             lspconfig.html.setup({ capabilities = capabilities })
-            lspconfig.tsserver.setup({ capabilities = capabilities, single_file_support = true })
+            lspconfig.ts_ls.setup({ capabilities = capabilities, single_file_support = true })
             -- global mappings
             vim.diagnostic.config({ virtual_text = false })
             vim.keymap.set("n", "<leader>le", vim.diagnostic.open_float)
