@@ -9,7 +9,8 @@ return {
         "williamboman/mason-lspconfig.nvim",
         config = function()
             require("mason-lspconfig").setup({
-                ensure_installed = { "lua_ls", "pyright", "volar", "cssls", "html", "ts_ls" },
+                ensure_installed = { "lua_ls", "pyright", "vue_ls", "cssls", "html", "ts_ls" },
+                automatic_enable = false,
             })
         end,
     },
@@ -17,16 +18,24 @@ return {
         "neovim/nvim-lspconfig",
         config = function()
             local capabilities = require("cmp_nvim_lsp").default_capabilities()
-            local lspconfig = require("lspconfig")
-            lspconfig.lua_ls.setup({ capabilities = capabilities })
-            lspconfig.pyright.setup({ capabilities = capabilities })
-            lspconfig.volar.setup({
-                capabilities = capabilities,
-                init_options = { typescript = { tsdk = "/usr/local/lib/node_modules/typescript/lib" } },
-            })
-            lspconfig.cssls.setup({ capabilities = capabilities })
-            lspconfig.html.setup({ capabilities = capabilities })
-            lspconfig.ts_ls.setup({ capabilities = capabilities, single_file_support = true })
+
+            local servers = {
+                lua_ls = {},
+                pyright = {},
+                vue_ls = {
+                    init_options = { typescript = { tsdk = "/usr/local/lib/node_modules/typescript/lib" } },
+                },
+                cssls = {},
+                html = {},
+                ts_ls = {},
+            }
+
+            for server, config in pairs(servers) do
+                config.capabilities = capabilities
+                vim.lsp.config(server, config)
+                vim.lsp.enable(server)
+            end
+
             -- global mappings
             vim.diagnostic.config({ virtual_text = false })
             vim.keymap.set("n", "<leader>le", vim.diagnostic.open_float)
