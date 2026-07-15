@@ -1,12 +1,12 @@
 return {
     {
-        "williamboman/mason.nvim",
+        "mason-org/mason.nvim",
         config = function()
             require("mason").setup()
         end,
     },
     {
-        "williamboman/mason-lspconfig.nvim",
+        "mason-org/mason.nvim",
         config = function()
             require("mason-lspconfig").setup({
                 ensure_installed = { "lua_ls", "pyright", "vue_ls", "cssls", "html", "ts_ls" },
